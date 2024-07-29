@@ -37,17 +37,26 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = '1.8'
-        targetCompatibility = '1.8'
+        sourceCompatibility = versions.jdk
+        targetCompatibility = versions.jdk
     }
+  kotlin {
+    jvmToolchain(versions.jdk)
+  }
+
+  dynamicFeatures = [':kotlin',
+                     ':java',
+                     ':native',
+                     ':assets']
+  namespace 'com.google.android.samples.dynamicfeatures'
 }
 
 dependencies {
 
-    implementation project(':kotlin')
-    implementation project(':java')
-    implementation project(':native')
-    implementation project(':assets')
+    //implementation project(':kotlin')
+    //implementation project(':java')
+    //implementation project(':native')
+    //implementation project(':assets')
 
     // Libraries which can be re-used in other modules should use the `api` keyword.
     // This way they can be shared with dependent feature modules.
@@ -55,6 +64,12 @@ dependencies {
     implementation "androidx.annotation:annotation:1.3.0"
     implementation "androidx.appcompat:appcompat:1.4.0"
     implementation "androidx.constraintlayout:constraintlayout:2.1.2"
-    implementation "com.google.android.material:material:1.4.0"
+    implementation 'com.google.android.material:material:1.4.0'
+    api "com.google.android.material:material:1.4.0"
+    implementation 'androidx.core:core-ktx:1.13.1'
 
+  // *** Add the line below
+  api "com.google.android.play:core:${versions.playcore}"
+
+  api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}"
 }

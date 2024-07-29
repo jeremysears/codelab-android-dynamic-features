@@ -10,3 +10,5 @@
 /captures
 .externalNativeBuild
 release
+/features/native/.cxx
+/keyz.jks
